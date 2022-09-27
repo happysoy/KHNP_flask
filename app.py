@@ -1,5 +1,6 @@
 from flask import Flask, request
 import axisDatas
+
 app = Flask(__name__)
 app.config['JSON_AS_ASCII']=False
 
@@ -7,9 +8,11 @@ app.config['JSON_AS_ASCII']=False
 def home():
   fileName = request.args['file_name']
   fileURL = request.args['file_URL']
+  tspSetting = request.args['tsp_setting']
+  defectSetting = request.args['defect_setting']
 
-  print("nextjs 로부터 받아온 정보", fileName, fileURL)
-  result = axisDatas.getData(fileName, fileURL)
+  print("nextjs 로부터 받아온 file", fileName)
+  result = axisDatas.getData(fileName, fileURL, tspSetting, defectSetting)
 
   return result
 
